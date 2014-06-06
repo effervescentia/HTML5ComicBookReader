@@ -1,0 +1,23 @@
+{
+  "name": "webslinger",
+  "version": "0.0.0",
+  "homepage": "https://github.com/effervescentia/HTML5ComicBookReader",
+  "authors": [
+    "effervescentia <ben.l.teichman@gmail.com>"
+  ],
+  "description": "cbr/cbz html5 comic reader",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rarjs": "git://github.com/43081j/rar.js.git"
+  }
+}

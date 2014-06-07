@@ -80,7 +80,7 @@ function handleFile(file) {
 
 }
 
-function handlZip(file) {
+function handleZip(file) {
   zip.workerScriptsPath = "js/";
 
   zip.createReader(new zip.BlobReader(file), function(reader) {
@@ -181,7 +181,7 @@ function handleRar(file) {
         $("#statusModalText").modal("hide");
 
         doError("Sorry, decompression not supported.");
-        console.dir(err);
+        // console.dir(err);
         return;
       } else if(entry.name.indexOf(".jpg") != -1) {
 

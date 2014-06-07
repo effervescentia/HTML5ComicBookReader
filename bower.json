@@ -18,6 +18,6 @@
     "tests"
   ],
   "dependencies": {
-    "rarjs": "git://github.com/43081j/rar.js.git"
+    "rarjs": "git@github.com:effervescentia/rar.js.git"
   }
 }

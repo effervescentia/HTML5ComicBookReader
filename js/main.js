@@ -11,7 +11,7 @@ function errorHandler(e) {
 }
 
 function init() {
-  window.webkitStorageInfo.requestQuota(window.TEMPORARY, 20*1024*1024, function(grantedBytes) {
+  navigator.webkitTemporaryStorage.requestQuota(20*1024*1024, function(grantedBytes) {
     window.webkitRequestFileSystem(window.TEMPORARY, grantedBytes, onInitFs, errorHandler);
   }, errorHandler);
 
@@ -69,6 +69,18 @@ options = {
 
 function handleFile(file) {
   console.log(file);
+
+  if (file.name.indexOf('.cbr') != -1) {
+    console.log('CBR');
+    handleRar(file);
+  } else if (file.name.indexOf('.cbz') != -1) {
+    console.log('CBZ');
+    handleZip(file);
+  }
+
+}
+
+function handlZip(file) {
   zip.workerScriptsPath = "js/";
 
   zip.createReader(new zip.BlobReader(file), function(reader) {
@@ -79,12 +91,12 @@ function handleFile(file) {
       $("#introText").hide();
 
       //Start a modal for our status
-      var modalString = 'Parsed the CBZ - Saving Images. This takes a <strong>long</strong> time!';
+      var modalString = 'Parsed the comic - Saving Images. This takes a <strong>long</strong> time!';
       $("#statusModalText").html(modalString);
       $("#statusModal").modal({keyboard:false});
 
       entries.forEach(function(entry) {
-        
+
         if(!entry.directory && entry.filename.indexOf(".jpg") != -1) {
 
           //rewrite w/o a path
@@ -93,8 +105,8 @@ function handleFile(file) {
 
           dir.getFile(cleanName, {create:true}, function(file) {
             console.log("Yes, I opened "+file.fullPath);
-            images.push({path:file.toURL(), loaded:false})
-  
+            images.push({path:file.toURL(), loaded:false});
+
             entry.getData(new zip.FileWriter(file), function(e) {
               done++;
               var perc = Math.floor((done/images.length)*100);
@@ -147,8 +159,44 @@ function handleFile(file) {
       });
     });
   }, function(err) {
-    doError("Sorry, but unable to read this as a CBR file.");
+    doError("Sorry, but enable to read " + file.name);
     console.dir(err);
+  });
+}
+
+function handleRar(file) {
+  var archive = RarArchive(file, function(err) {
+    console.log("Got entries.");
+
+    // Start a modal for our status
+    var modalString = 'Parsed the comic - Saving Images. This takes a <strong>long</strong> time!';
+    $("#statusModalText").html(modalString);
+    $("#statusModal").modal({keyboard:false});
+    console.log(archive);
+    archive.entries.forEach(function(entry) {
+      $("#introText").hide();
+
+      if (entry.method !== entry.METHOD_STORE) {
+        $("#introText").show();
+        $("#statusModalText").modal("hide");
+
+        doError("Sorry, decompression not supported.");
+        console.dir(err);
+        return;
+      } else if(entry.name.indexOf(".jpg") != -1) {
+
+        archive.get(entry, function(blob) {
+          console.log("blob");
+          console.log(blob);
+        });
+      }
+    });
+
+    if (err) {
+      doError("Sorry, but enable to read " + file.name);
+      console.dir(err);
+      return;
+    }
   });
 }
 
@@ -209,5 +257,3 @@ function spread(num) {
   drawPanel(curPanel);
   fitBoth();
 }
-
-

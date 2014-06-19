@@ -164,6 +164,43 @@ function handleZip(file) {
   });
 }
 
+function handleJpgs(domain, jpgs) {
+  jpgs.forEach(function(jpg) {
+    if (jpg.indexOf('.jpg') > 0) {
+      images.push({path: domain + jpg, loaded: true});
+      console.log('jpg loaded: ' + jpg);
+    }
+  });
+
+  $(".navbar ul li").show();
+
+  $("#prevPanel").on("click",prevPanel);
+  $(document).bind('keydown', 'left', prevPanel);
+  $(document).bind('keydown', 'k', prevPanel);
+
+  $("#nextPanel").on("click",nextPanel);
+  $(document).bind('keydown', 'right', nextPanel);
+  $(document).bind('keydown', 'j', nextPanel);
+
+  $("#fitVertical").on("click",fitVertical);
+  $(document).bind('keydown', 'v', fitVertical);
+
+  $("#fitHorizontal").on("click",fitHorizontal);
+  $(document).bind('keydown', 'h', fitHorizontal);
+
+  $("#fitBoth").on("click",fitBoth);
+  $(document).bind('keydown', 'b', fitBoth);
+
+  $("#fullSpread").on("click",fullSpread);
+  $(document).bind('keydown', 'f', fullSpread);
+
+  $("#singlePage").on("click",singleSpread);
+  $(document).bind('keydown', 's', singleSpread);
+
+  spread(1); // drawPanel(0);
+}
+
+
 function handleRar(file) {
   var archive = RarArchive(file, function(err) {
     console.log("Got entries.");
@@ -218,11 +255,17 @@ function drawPanel(num) {
 }
 
 function prevPanel() {
-  if(curPanel > 0) drawPanel(curPanel-display);
+  if(curPanel > 0) {
+    drawPanel(curPanel-display);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
 }
 
 function nextPanel() {
-  if(curPanel+display < images.length) drawPanel(curPanel+display);
+  if(curPanel+display < images.length) {
+    drawPanel(curPanel+display);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
 }
 
 function fitHorizontal() {

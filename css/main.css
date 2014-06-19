@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+  font-family: "Open Sans", Helvetica, Arial, Sans-serif;
+}
+body {
+  background: #171717 url('/img/html5_logo.png') no-repeat bottom right;
+  background-size: 256px 256px;
+  color: #999;
+}
+h1 {
+  color: #fff;
+}
+body .modal {
+  color: #333;
+}
+#comicImages {
+  text-align: center;
+}
+#introText {
+  margin-top: 100px;
+}
+.fitVertical {
+  height: 100%;
+  height: -moz-calc(100% - 41px);
+  height: -webkit-calc(100% - 41px);
+  height: calc(100% - 41px);
+
+  width: auto;
+}
+.spread2 .fitHorizontal {
+  height: auto;
+  width: 50%;
+}
+.spread1 .fitHorizontal {
+  height: auto;
+  width: 100%;
+}
+
+.fitBoth {
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-height: -moz-calc(100% - 41px);
+  max-height: -webkit-calc(100% - 41px);
+  max-height: calc(100% - 41px);
+  }
+  .spread1 .fitBoth {
+    max-width: 100%;
+  }
+  .spread2 .fitBoth {
+    max-width: 50%;
+}
+
+.file-container {
+  height: 100%;
+}

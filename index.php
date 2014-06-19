@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,600,300" rel="stylesheet" type="text/css">
@@ -19,69 +18,15 @@
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/jquery.hotkeys.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
-
-    <script src="./js/zip.js"></script>
-    <script src="./lib/rarjs/dist/rar.js"></script>
     <script src="./js/deflate.js"></script>
     <script src="./js/main.js"></script>
 
-    <style>
-      html, body {
-        height: 100%;
-        font-family: "Open Sans", Helvetica, Arial, Sans-serif;
-      }
-      body {
-        background: #171717 url('html5_logo.png') no-repeat bottom right;
-        background-size: 256px 256px;
-        color: #999;
-      }
-      h1 {
-        color: #fff;
-      }
-      body .modal {
-        color: #333;
-      }
-      #comicImages {
-        text-align: center;
-      }
-      #introText {
-        margin-top: 100px;
-      }
-      .fitVertical {
-        height: 100%;
-        height: -moz-calc(100% - 41px);
-        height: -webkit-calc(100% - 41px);
-        height: calc(100% - 41px);
+    <?php include('./php/libs.php');
 
-        width: auto;
-      }
-      .spread2 .fitHorizontal {
-        height: auto;
-        width: 50%;
-      }
-      .spread1 .fitHorizontal {
-        height: auto;
-        width: 100%;
-      }
+    <link href="./css/main.css" rel="stylesheet">
+  </head>
 
-      .fitBoth {
-        width: auto;
-        height: auto;
-        max-height: 100%;
-        max-height: -moz-calc(100% - 41px);
-        max-height: -webkit-calc(100% - 41px);
-        max-height: calc(100% - 41px);
-        }
-        .spread1 .fitBoth {
-          max-width: 100%;
-        }
-        .spread2 .fitBoth {
-          max-width: 50%;
-      }
-    </style>
-</head>
-
-<body onload="init()">
+  <body onload="init()">
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
@@ -92,7 +37,7 @@
           </a>
 
           <a class="brand" href="/">Web Slinger Comic Reader</a>
-          <a class="brand" href="/info.html">info</a>
+          <a class="brand" href="info">info</a>
 
           <div class="nav-collapse collapse">
           <ul class="nav">
@@ -107,6 +52,13 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div id="file-container" class="file-container">
+      <h1 class="file-direc">
+      </h1>
+      <ul class="file-list">
+      </ul>
     </div>
 
     <div class="modal hide" id="statusModal">

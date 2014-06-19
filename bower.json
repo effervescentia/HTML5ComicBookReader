@@ -18,6 +18,5 @@
     "tests"
   ],
   "dependencies": {
-    "rarjs": "git@github.com:effervescentia/rar.js.git"
   }
 }

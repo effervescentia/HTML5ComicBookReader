@@ -21,7 +21,7 @@
     <script src="./js/deflate.js"></script>
     <script src="./js/main.js"></script>
 
-    <?php include('./php/libs.php');
+    <?php include('./php/libs.php'); ?>
 
     <link href="./css/main.css" rel="stylesheet">
   </head>

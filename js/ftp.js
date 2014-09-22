@@ -69,12 +69,12 @@ function ftp_get(file) {
   $.ajax({
     type: 'POST',
     url: '/php/ftp_get.php',
-    dataType: 'json',
     data: {'file': file},
 
     success: function(result) {
       $('.spinner').fadeOut();
-      handleJpgs('http://tmp.benteichman.ca/', result);
+      console.log(result);
+      // handleJpgs('http://tmp.benteichman.ca/', result);
       $('.file-container').slideUp();
     },
     error: function() {
